@@ -6,3 +6,37 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Player {
+  id      Int          @id @default(autoincrement())
+  name    String
+  balance Int          @default(0)
+  heroes  PlayerHero[]
+}
+
+model Hero {
+  id      Int          @id @default(autoincrement())
+  name    String
+  role    String
+  price   Int          // Harga hero untuk fitur beli hero
+  skins   Skin[]
+  players PlayerHero[]
+}
+
+model Skin {
+  id      Int    @id @default(autoincrement())
+  name    String
+  rarity  String
+  heroId  Int
+  hero    Hero   @relation(fields: [heroId], references: [id])
+}
+
+// Tabel perantara (Many-to-Many) untuk relasi Player memiliki banyak Hero
+model PlayerHero {
+  playerId Int
+  heroId   Int
+  player   Player @relation(fields: [playerId], references: [id])
+  hero     Hero   @relation(fields: [heroId], references: [id])
+
+  @@id([playerId, heroId])
+}
