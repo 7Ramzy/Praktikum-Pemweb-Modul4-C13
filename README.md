@@ -4,8 +4,6 @@ Backend toko Mobile Legends sederhana berbasis **Express 5 + TypeScript**, **Pri
 
 ## Kelompok C13
 
-Repository: `pweb-express-c13-2026`
-
 | Nama | NRP |
 |---|---|
 | Tafidah Hasna Mumtazah | 5027251025 |
